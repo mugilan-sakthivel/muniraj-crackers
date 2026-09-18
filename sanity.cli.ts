@@ -6,4 +6,7 @@ export default defineCliConfig({
     dataset: 'production',
   },
   studioHost: 'muniraj-crackers-8bk97zyk',
+  deployment: {
+    appId: 'yatydj52mhuru1d9o95n41pl',
+  },
 })

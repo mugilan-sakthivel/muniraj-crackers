@@ -57,4 +57,29 @@ export const page = defineType({
   ],
 })
 
-export const schemaTypes = [siteSettings, category, product, page]
+export const enquiryItem = defineType({
+  name: 'enquiryItem', title: 'Enquiry item', type: 'object',
+  fields: [
+    defineField({ name: 'productId', title: 'Product ID', type: 'string' }),
+    defineField({ name: 'title', title: 'Product', type: 'string' }),
+    defineField({ name: 'pack', title: 'Pack', type: 'string' }),
+    defineField({ name: 'quantity', title: 'Quantity', type: 'number' }),
+    defineField({ name: 'pricePaise', title: 'Unit price (paise)', type: 'number' }),
+  ],
+})
+
+export const enquiryIntent = defineType({
+  name: 'enquiryIntent', title: 'WhatsApp enquiry intents', type: 'document',
+  fields: [
+    defineField({ name: 'name', title: 'Customer name', type: 'string', validation: (Rule) => Rule.required() }),
+    defineField({ name: 'mobile', title: 'Customer mobile', type: 'string', validation: (Rule) => Rule.required() }),
+    defineField({ name: 'notes', title: 'Customer notes', type: 'text' }),
+    defineField({ name: 'items', title: 'Selected items', type: 'array', of: [{ type: 'enquiryItem' }] }),
+    defineField({ name: 'totalPaise', title: 'Estimated total (paise)', type: 'number' }),
+    defineField({ name: 'source', title: 'Source', type: 'string' }),
+    defineField({ name: 'createdAt', title: 'Clicked WhatsApp at', type: 'datetime' }),
+  ],
+  orderings: [{ title: 'Newest first', name: 'createdAtDesc', by: [{ field: 'createdAt', direction: 'desc' }] }],
+})
+
+export const schemaTypes = [siteSettings, category, product, page, enquiryItem, enquiryIntent]

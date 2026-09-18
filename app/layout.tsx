@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><div className="site-shell"><div className="spark-field" aria-hidden="true"><i /><i /><i /><i /></div><div className="festival-main">{children}</div></div></body>
     </html>
   );
 }

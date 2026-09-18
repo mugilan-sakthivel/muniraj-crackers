@@ -1,11 +1,11 @@
 "use client"
 
-import Link from "next/link"
 import { useMemo, useState } from "react"
 import type { CatalogueCategory, CatalogueProduct } from "@/data/catalogue.generated"
 import { formatInr } from "@/lib/currency"
 import { cartQuantity, cartTotalPaise, readCart, saveCart } from "@/lib/cart"
 import { useCart } from "@/components/useCart"
+import { QuickEnquiryModal } from "@/components/QuickEnquiryModal"
 
 type Props = { categories: CatalogueCategory[]; products: CatalogueProduct[]; initialCategory?: string }
 
@@ -13,6 +13,7 @@ export function CatalogueClient({ categories, products, initialCategory = "all" 
   const [category, setCategory] = useState(initialCategory)
   const [query, setQuery] = useState("")
   const [notice, setNotice] = useState("")
+  const [enquiryOpen, setEnquiryOpen] = useState(false)
   const cartLines = useCart()
 
   const productsByCategory = useMemo(() => {
@@ -45,7 +46,7 @@ export function CatalogueClient({ categories, products, initialCategory = "all" 
     <div className="rounded-[2rem] bg-[#1d163e] px-5 py-9 text-white shadow-xl shadow-black/30 sm:px-10">
       <div className="flex flex-col gap-7 xl:flex-row xl:items-end xl:justify-between">
         <div className="max-w-2xl"><p className="text-xs font-black uppercase tracking-[.22em] text-[#f4c95d]">Muniraj Crackers catalogue</p><h1 className="mt-3 text-3xl font-black tracking-tight sm:text-5xl">Choose every pack in one simple order sheet.</h1><p className="mt-4 max-w-xl text-sm leading-6 text-white/80 sm:text-base">The shown offer price is used for your enquiry estimate. Add or remove any pack directly here — there is no need to open a product page.</p></div>
-        <Link href="/cart" className="shrink-0 rounded-2xl bg-[#efb637] px-5 py-4 text-center font-black text-[#40101c] transition hover:bg-[#ffd66c]">Review order · {selectedPacks} pack{selectedPacks === 1 ? "" : "s"}</Link>
+        <button onClick={() => setEnquiryOpen(true)} disabled={!selectedPacks} className="shrink-0 rounded-2xl bg-[#efb637] px-5 py-4 text-center font-black text-[#40101c] transition hover:bg-[#ffd66c] disabled:cursor-not-allowed disabled:opacity-50">Review order · {selectedPacks} pack{selectedPacks === 1 ? "" : "s"}</button>
       </div>
     </div>
 
@@ -75,7 +76,8 @@ export function CatalogueClient({ categories, products, initialCategory = "all" 
     </div>
 
     {!productsByCategory.length && <div className="mt-8 rounded-2xl bg-white/[.055] p-10 text-center shadow-sm"><h2 className="text-xl font-black text-white">No crackers found</h2><button onClick={() => { setCategory("all"); setQuery("") }} className="mt-4 font-bold text-[#f4b942] underline">Clear search and filters</button></div>}
-    <div className="sticky bottom-3 z-30 mt-8 rounded-2xl bg-[#0d0e26] p-4 text-white shadow-2xl shadow-black/40"><div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><p className="text-sm text-white/70">{selectedPacks} pack{selectedPacks === 1 ? "" : "s"} selected · Offer estimate</p><p className="text-2xl font-black">{formatInr(selectedTotal)}</p></div><Link href="/cart" className="rounded-xl bg-[#f4b942] px-5 py-3 text-center font-black text-[#17121b]">Review and send enquiry</Link></div></div>
+    <div className="sticky bottom-3 z-30 mt-8 rounded-2xl bg-[#0d0e26] p-4 text-white shadow-2xl shadow-black/40"><div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div><p className="text-sm text-white/70">{selectedPacks} pack{selectedPacks === 1 ? "" : "s"} selected · Offer estimate</p><p className="text-2xl font-black">{formatInr(selectedTotal)}</p></div><button onClick={() => setEnquiryOpen(true)} disabled={!selectedPacks} className="rounded-xl bg-[#f4b942] px-5 py-3 text-center font-black text-[#17121b] disabled:cursor-not-allowed disabled:opacity-50">Continue to WhatsApp enquiry</button></div></div>
+    {enquiryOpen && <QuickEnquiryModal lines={cartLines} onClose={() => setEnquiryOpen(false)} />}
   </section>
 }
 
