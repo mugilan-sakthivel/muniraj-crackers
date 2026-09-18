@@ -1,7 +1,5 @@
 /* Generated from public/reference-images/manifest.json. */
 export const localProductImageUrls = [
-  "/reference-images/b10b1482c7e57ca9.webp",
-  "/reference-images/ae42760b5bbf4daa.webp",
   "/reference-images/b9fc2d9e60810ba4.webp",
   "/reference-images/ceec87a868678a1c.webp",
   "/reference-images/03b8525cc91711c5.webp",
