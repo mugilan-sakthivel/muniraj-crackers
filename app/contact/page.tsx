@@ -1,0 +1,2 @@
+import { InfoPage } from "@/components/InfoPage"
+export default function ContactPage() { return <InfoPage eyebrow="Get in touch" title="Contact Muniraj Crackers"><p>The business WhatsApp number, phone, address and hours are managed in Sanity and will appear here when published.</p><p>For now, use the catalogue cart to prepare an estimate and contact the store through the confirmed business channel.</p></InfoPage> }

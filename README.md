@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Muniraj Crackers
 
-## Getting Started
+A mobile-first Next.js catalogue and WhatsApp enquiry website. It creates an **enquiry estimate**, not an online sale or payment transaction. Customers browse the catalogue, choose quantities, review the estimate, and open a prefilled WhatsApp message for seller confirmation.
 
-First, run the development server:
+## Included
+
+- 51 categories and 242 editable products, imported into Sanity.
+- Catalogue search, product/category routes, a local enquiry cart, quantity controls and an INR total.
+- A clearly marked itemized WhatsApp enquiry message with quantities and total.
+- Safety, FAQ, contact, privacy, terms, sitemap and robots routes.
+- A local archive of the 218 unique product assets observed in the supplied reference catalogue: `public/reference-images/`.
+
+## CMS
+
+[Open Muniraj Crackers Sanity Studio](https://muniraj-crackers-8bk97zyk.sanity.studio)
+
+Sign in using the Sanity account that owns the project. Categories and Products include fields for images, pack contents, prices, availability and ordering.
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Set `NEXT_PUBLIC_WHATSAPP_NUMBER` to the confirmed business number in country-code format before publishing. It is deliberately blank in the repository, so enquiries cannot be sent to an unconfirmed recipient.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks and deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm catalogue:generate
+pnpm lint
+pnpm exec next build --webpack
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`data/sanity-import.ndjson` is the reproducible catalogue import. The provisioned `production` dataset has all 293 documents (51 categories + 242 products). Deploy the web app to Vercel after configuring `.env.local`; redeploy Studio after schema changes with `pnpm sanity:deploy`.

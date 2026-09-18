@@ -1,0 +1,2 @@
+import { InfoPage } from "@/components/InfoPage"
+export default function TermsPage() { return <InfoPage eyebrow="Terms" title="Catalogue and enquiry terms"><p>This website is an information and enquiry service. It does not accept online orders, payments or issue invoices. Product availability, legality, fulfilment, final price and any sale are subject to confirmation by the licensed seller and applicable law.</p></InfoPage> }

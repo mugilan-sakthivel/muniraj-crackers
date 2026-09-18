@@ -1,0 +1,2 @@
+import { InfoPage } from "@/components/InfoPage"
+export default function AboutPage() { return <InfoPage eyebrow="Our story" title="About Muniraj Crackers"><p>Muniraj Crackers helps customers build a clear product enquiry list before speaking with the shop team.</p><p>Business credentials, address, licence and seasonal information are maintained by the owner in Sanity before publication.</p></InfoPage> }
