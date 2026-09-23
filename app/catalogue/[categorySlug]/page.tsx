@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation"
+export const revalidate = 600
 import { CatalogueClient } from "@/components/CatalogueClient"
 import { SiteFooter } from "@/components/SiteFooter"
 import { SiteHeader } from "@/components/SiteHeader"
