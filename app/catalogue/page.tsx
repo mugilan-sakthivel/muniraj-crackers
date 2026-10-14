@@ -1,4 +1,4 @@
-export const revalidate = 600
+export const revalidate = 60
 import { CatalogueClient } from "@/components/CatalogueClient"
 import { CategoryDirectory } from "@/components/CategoryDirectory"
 import { SiteFooter } from "@/components/SiteFooter"

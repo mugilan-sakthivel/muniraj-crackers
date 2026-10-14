@@ -1,5 +1,5 @@
 import Link from "next/link"
-export const revalidate = 600
+export const revalidate = 60
 import { CategoryDirectory } from "@/components/CategoryDirectory"
 import { HeroEnquiryCard } from "@/components/HeroEnquiryCard"
 import { SiteFooter } from "@/components/SiteFooter"
