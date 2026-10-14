@@ -14,6 +14,10 @@ A mobile-first Next.js catalogue and WhatsApp enquiry website. It creates an **e
 
 [Open Muniraj Crackers Sanity Studio](https://muniraj-crackers-8bk97zyk.sanity.studio)
 
+## Updating prices
+
+In Sanity, open a product and enter prices as normal rupee amounts: use `180` for ₹180 or `18.50` for ₹18.50. The website, cart total, and WhatsApp enquiry use the exact offer price entered in Sanity.
+
 Sign in using the Sanity account that owns the project. Categories and Products include fields for images, pack contents, prices, availability and ordering.
 
 ## Local development
